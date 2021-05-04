@@ -149,11 +149,10 @@ Use the removeFlavorByName function below to do the following:
 
 function removeFlavorByName(arr, flavor) {
   //   const filteredArray = arr.filter((item) => !flavor.includes(item));
-  const filteredArray = arr.filter((item) => item != flavor);
+  const filteredArray = arr.filter((x) => x != flavor);
   return filteredArray;
 }
-
-console.log(removeFlavorByName);
+console.log(removeFlavorByName(originalFlavors, "Rocky Road"));
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 July 7th is "World Chocolate Day" and Baskin Robins wants to create promotional materials highlighting all of their chocolate flavors. 
@@ -175,9 +174,13 @@ Use the filterByWord function below to do the following:
     DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem. 
 */
 
-function filterByWord(/*your code here*/) {
-  /*your code here*/
-}
+// function filterByWord(arr, str) {
+
+// }
+
+const filterByWord = (arr, str) => arr.filter((el) => el.includes(str));
+
+console.log(filterByWord(originalFlavors, "Chocolate"));
 
 /* 💪💪💪💪💪🧁🍦🍨 STRETCH 🍨🍦🍫💪💪💪💪💪*/
 
@@ -191,9 +194,16 @@ Use the getAverageWordLength function below to do the following:
     For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/) {
-  /*code here*/
+function getAverageWordLength(arr) {
+  const numberOfWordsArr = (arrInput) =>
+    arrInput.map((el) => el.split(" ").length);
+  const countNumbers = numberOfWordsArr(originalFlavors);
+  const sum = countNumbers.reduce((a, b) => a + b);
+  const average = sum / countNumbers.length;
+  return average;
 }
+
+console.log(getAverageWordLength(originalFlavors));
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
 Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors 
@@ -206,10 +216,6 @@ Use the getRandomFlavors function and new arrays below to do the following:
 
     For example: getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors) might return ["Strawberry Cheesecake", "Eggnog,"..."Chocolate"].
 */
-
-function getRandomFlavors(/*code here*/) {
-  /*code here*/
-}
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
 const newFlavors = [
@@ -291,6 +297,21 @@ const regionalFlavors = [
   "Chocolate Chocolate Chip Cheesecake",
   "Caramel 'n' Cookies",
 ];
+
+function getRandomFlavors(arr1, arr2, arr3, arr4) {
+  let newArr = arr1.concat(arr2, arr3, arr4);
+  let random = newArr.sort(() => 0.5 - Math.random()).slice(0, 31);
+  return random;
+}
+
+console.log(
+  getRandomFlavors(
+    originalFlavors,
+    newFlavors,
+    originalFlavors,
+    regionalFlavors
+  )
+);
 
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
 function foo() {
